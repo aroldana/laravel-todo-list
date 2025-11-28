@@ -10,4 +10,5 @@ Route::delete('/tasks/{id}', [TaskController::class, 'destroy']); // Borrar
 // Ruta para MOSTRAR el formulario de edición
 Route::get('/tasks/{id}/edit', [TaskController::class, 'edit']);
 
-Route::get('/tasks/{id}/edit', [TaskController::class, 'edit']);
+// Ruta para PROCESAR la actualización (Notar que es PUT)
+Route::put('/tasks/{id}', [TaskController::class, 'update']);
