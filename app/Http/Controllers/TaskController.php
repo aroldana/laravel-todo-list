@@ -31,6 +31,31 @@ class TaskController extends Controller
         return redirect('/');
     }
 
+    // 1. Buscar la tarea y mandar la vista de edición
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id); // Si no existe el ID, lanza error 404
+        return view('edit', ['task' => $task]);
+    }
+
+    // 2. Recibir los datos y actualizar la BD
+    public function update(Request $request, $id)
+    {
+        // Validamos igual que al crear
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+
+        $task = Task::findOrFail($id);
+        
+        // Aquí ocurre la magia: actualizamos los campos
+        $task->update([
+            'name' => $request->input('name')
+        ]);
+
+        return redirect('/'); // Nos devolvemos a la lista principal
+    }
+
     // Eliminar tarea
     public function destroy($id)
     {

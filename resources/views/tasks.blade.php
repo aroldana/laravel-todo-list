@@ -23,13 +23,19 @@
             @foreach ($tasks as $task)
                 <li class="flex justify-between items-center bg-gray-50 p-3 rounded border">
                     <span>{{ $task->name }}</span>
-                    
-                    <form action="/tasks/{{ $task->id }}" method="POST">
-                        @csrf
-                        @method('DELETE') <button type="submit" class="text-red-500 hover:text-red-700 text-sm">
-                            Eliminar
-                        </button>
-                    </form>
+                        <div class="flex gap-2">
+                            <a href="/tasks/{{ $task->id }}/edit" class="text-blue-500 hover:text-blue-700 text-sm font-bold">
+                                Editar
+                            </a>
+
+                            <form action="/tasks/{{ $task->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 hover:text-red-700 text-sm">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
                 </li>
             @endforeach
         </ul>
